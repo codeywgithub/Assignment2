@@ -4,10 +4,10 @@
  */
 public class Grid {
 	// Define the amount of rows and columns
-	static int ROWS = 3;			// Rows
-	static int COLUMNS = 3;		// Columns
+	public static final int ROWS = 3;			// Rows
+	public static final int COLUMNS = 3;		// Columns
  
-	Box[][] board;;								// Represents the game board as a grid. TWO DIMENSIONAL ARRAY
+	Box[][] board;;								// Represents the game board as a grid. TWO DIMENSIONAL ARRAY of object type box
 	
 	
 	int currentRow;								// Row that was played last
@@ -20,7 +20,7 @@ public class Grid {
 	/********************* Constructor **************************/
 	public Grid() {
 	      // TODO: Initialise the board array using ROWS and COLUMN
-			board = new Box[ROWS][COLUMNS];
+			board = new Box[ROWS][COLUMNS]; //creates a 3 dimensional array, but not vissually yet. needs to contain box type
 	      
 	      for (int row = 0; row < ROWS; ++row) {
 	         for (int col = 0; col < COLUMNS; ++col) {
@@ -41,12 +41,23 @@ public class Grid {
 	
 	
 	   public boolean isDraw() {
-		return false;
+		   for (int row = 0; row < ROWS; ++row) {
+			   for (int col = 0; col < COLUMNS; ++col) {
+				   if(board[row][col].content == Player.EMPTY) {
+					   return false;
+				   } 
+				   }
+					   
+			   }
+		   
+		return true;
+		
+		
 		   
 		   // TODO: Check whether the game has ended in a draw. 
 		   // Hint: Use a nested loop (see the constructor for an example). Check whether any of the Boxes in the board grid are Player.Empty. If they are, it is not a draw.
 		   // Hint: Return false if it is not a draw, return true if there are not empty positions left
-		   
+		
 
 	   }
 	 
@@ -60,7 +71,9 @@ public class Grid {
 		   // Row check
 		   if(board[currentRow][0].content == player && board[currentRow][1].content == player && board[currentRow][2].content == player) {
 			   return true;
-		   }
+		   }else if (board[0][currentCol].content == player && board[1][currentCol].content == player && board[2][currentCol].content == player) {
+			   return true;
+		}
 		   // Column check
 
 		   // TODO: Check if the currentCol is filled.
@@ -69,7 +82,9 @@ public class Grid {
 		   // Diagonal check (check both directions
 		   if(board[0][0].content == player && board[1][1].content == player && board[2][2].content == player) {
 			   return true;
-		   }
+		   }else if (board[0][2].content == player && board[1][1].content == player && board[2][0].content == player) {
+			return true;
+		}
 
 		   // TODO: Check the diagonal in the other direction
 		   

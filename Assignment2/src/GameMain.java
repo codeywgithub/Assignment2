@@ -28,9 +28,8 @@ public class GameMain {
 		   // Reset the game variables to their defaults
 		   
 		   // TODO: Assign the default values for currentPlayer (Player.X), gameOver (false), and winner (null)
-
-			currentPlayer = Player.X;
 			gameOver = false;
+			currentPlayer = Player.X;
 			winner = null;
 		
 		   // Begin playing the game
@@ -53,7 +52,11 @@ public class GameMain {
 	         if(gameOver) {
 	        	 if(winner == Player.X) {
 		        	 System.out.println("Player X wins!");
-		         }
+		         } else if (winner == Player.O) {
+		        	 System.out.println("Player O wins!");
+				} else {
+					System.out.println("The game is a draw!");
+				}
 	        	 
 	        	 // TODO: Display result if player O wins
 	        	 
@@ -67,7 +70,7 @@ public class GameMain {
 	        	 currentPlayer = Player.X;
 	         }
 	         
-	      } while (!gameOver);  // repeat until game-over
+	      } while (!gameOver);  // repeat until game-over is not true (false). will not work is gameOver is true.
    }
  
    /** 
@@ -126,6 +129,7 @@ public class GameMain {
 
     	  // TODO: Set gameOver and winner appropriately
     	  gameOver = true;
+    	  winner = null;
     	  // ============================================ need to add a winner here
       }
    }
@@ -134,79 +138,19 @@ public class GameMain {
    
    
    public static void main(String[] args) {
-	   Scanner scanner = new Scanner(System.in);
-	   boolean status = true;
-	   int selectionMenu = 0;
-	   boolean isNumber = true;
-	 //------------------------------- Displays menu to user --------------------------------------------
-	   while (status) {
-	   System.out.println("                                             "); //create space
-		System.out.println("Main Menu - Enter an option below between 1-2");
-		System.out.println("----------------------------------------------");
-		System.out.println("Press '1' to start a new game ");
-		System.out.println("Press '2' to Exit ");
-		System.out.println("----------------------------------------------");
-		
-		//------------------------------- Displays menu to user --------------------------------------------
 	   
-		//------------------------------- Error input checking --------------------------------------------
-		
-		do {
-			if (scanner.hasNextInt()) { //if statement checks what the user types in to see if it is an integer. Will = true if int is entered.
-				
-				selectionMenu = scanner.nextInt(); //user input to selectionMenu
-				
-				isNumber=true; //user entered an int so we want to exit loop.
-				
-			} else {
-				System.out.println("Incorrect input, enter 1 or 2"); //incorrect input message
-				isNumber=false; 
-				scanner.next(); //removes contents of Scanner to prevent an infinite loop.
-			}
-		} while (!(isNumber)); //flips isNumber to activate while statement
-		
-		//------------------------------- Error input checking --------------------------------------------
-		
-		
-		//------------------------------- Selection choice --------------------------------------------
-		
-		switch(selectionMenu) {
-		
-		case 1: { //Display student marks
-			new GameMain();
-			status=false;
-			break;
-
-		}
-		case 2: { //Display student grades
-			System.out.println("Closing the program...");
-			status=false;
-			
-			
-			break;
-			
-		}
-		
-		default: {
-			System.out.println("Invalid input");
-			
-			continue;
-			
-		}
-		
-		
-	   }
-		
-		//------------------------------- Selection choice --------------------------------------------
-	   
-	   // TODO: Add a loop to restart the game once it has finished
-	  
-	  
-	   // TODO: Then update the loop to ask the player if they want to play again, exit if they do not
-	   
+	Boolean playAgainBoolean = true;
 	
-   }
-   
+	do {
+		new GameMain(); 
+		System.out.println("Press 1 to start a new game");
+		String input = scanner.next();
+		if(input != "1") {
+			new GameMain();
+		}
+	} while(playAgainBoolean); {
+		
+	}
 }
    
 }

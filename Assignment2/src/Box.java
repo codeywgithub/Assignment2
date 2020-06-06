@@ -13,9 +13,9 @@ public class Box {
 	   
 	   // 2. TODO: Initialise the variables row, col, and content
 	   
-	   row=0;
-	   col=0;
-	   content = Player.EMPTY;
+	   this.row = row;
+	   this.col = col;
+	   clear();
 	   
   
    }
@@ -43,11 +43,11 @@ public class Box {
 	   // TODO: Print the content of this box (" X " if it Player.X, " O " for Player.O and "   " for Player.Empty)
 	   // Hint: Can use an if-else or switch statement
 	   if (content == Player.X) {
-		   System.out.println("X");
+		   System.out.print("X");
 	   } else if (content == Player.O) {
-		   System.out.println("O");
+		   System.out.print("O");
 	   } else if (content == Player.EMPTY) {
-		   System.out.println("   ");
+		   System.out.print(" ");
 	   }
 	  
 	   
